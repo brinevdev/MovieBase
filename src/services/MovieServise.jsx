@@ -3,10 +3,14 @@
 export default class MovieService {
 
     _APIKEY = 'e0ec4c232335ffc08d42a11556a54ec5';  
-    IMAGEPATH = 'https://image.tmdb.org/t/p/w500/';
-
-    getMovies = async () => {
-      const res = await  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${this._APIKEY}&language=ru-RU&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`)
+     IMAGEPATH = 'https://image.tmdb.org/t/p/w500/';
+    _QUERYBASE = `https://api.themoviedb.org/3/discover/movie?language=ru-RU&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&api_key=${this._APIKEY}&`
+    
+    
+    getMovies = async (params=[]) => {
+      const stringParams = Object.entries(params).map((param)=>`${param[0]}=${param[1]}`).join('&');
+      console.log(this._QUERYBASE+stringParams);
+      const res = await fetch(this._QUERYBASE+stringParams);
       const movies = await res.json()
       console.log(movies);
       return movies.results.slice(0,18).map((movie) => this.transformMovie(movie))
@@ -21,6 +25,7 @@ export default class MovieService {
     return genresAll.join(', ')
     }
 
+    
     transformMovie = (movie) => {
         return {
             id:movie.id,

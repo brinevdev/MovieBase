@@ -7,15 +7,32 @@ import MovieList from './components/MovieList/MovieList';
 import MovieService from './services/MovieServise';
 
 function App() {
-
+  const [params,setParams] = useState([])
   const [movies,setMovies] = useState([]);
   const movieService = new MovieService();
  
   useEffect(()=>{
-      movieService.getMovies()
+      movieService.getMovies(params)
       .then(movies => setMovies(movies))
-  },[]);
+  },[params]);
 
+  const filetrByGenre = (id) => {
+    setParams((state)=>{
+      return {
+        ...state,
+       ['with_genres']:id,
+      }
+    })
+  }
+
+  const filterByYear = (year) => {
+    setParams((state)=>{
+      return {
+        ...state,
+       year,
+      }
+    })
+  }
 
   return (
     <div className="wrapper">
@@ -26,7 +43,9 @@ function App() {
                   <div className="movies__body">
                       <MovieList movies={movies}/>
                   </div>
-                  <NavBar/>
+                  <NavBar 
+                  filetrByGenre = {filetrByGenre} 
+                  filterByYear = {filterByYear}/>
               </div>
           </div>
       </main>

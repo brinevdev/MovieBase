@@ -2,8 +2,22 @@ import './navbar.scss';
 import searchIcon from './../../resources/icons/search_icon.svg'
 
 
-const NavBar = () => {
+const NavBar = ({filetrByGenre,filterByYear}) => {
     
+            
+    const onGenreFilter = (e) => {
+        document.querySelectorAll('.genre__item').forEach((item)=>item.classList.remove('genre__item_active'));
+        e.target.classList.add('genre__item_active');
+        filetrByGenre(e.target.getAttribute('data-genre-id'))
+    } 
+
+    const onYearFilter = (e) => {
+        e.preventDefault();
+        const value = document.querySelector('#year-filter-input').value;
+        if (!value) return
+        filterByYear(+value);
+    }
+
     return (
         <div className="movies__navbar navbar">
         <div className="navbar__title">
@@ -19,11 +33,11 @@ const NavBar = () => {
         <div className="navbar__year">
             <form>
                 <input id="year-filter-input" type="number" min='1960' max='2022' placeholder="год выпуска"/>
-                <button id="year-filter-btn"><img src={searchIcon} alt=""/></button>
+                <button onClick={onYearFilter} id="year-filter-btn"><img src={searchIcon} alt=""/></button>
             </form>
         </div>
         <div className="navbar__subtitle">Жанры</div>
-        <div className="navbar__genre genre">
+        <div className="navbar__genre genre" onClick={onGenreFilter}>
             <div className="genre__item" data-genre-id="27">Ужасы</div>
             <div className="genre__item" data-genre-id="53">Триллер</div>
             <div className="genre__item" data-genre-id="35">Комедия</div>
