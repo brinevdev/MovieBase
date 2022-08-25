@@ -2,13 +2,14 @@
 
 export default class MovieService {
 
-     _APIKEY = 'e0ec4c232335ffc08d42a11556a54ec5';  
+    _APIKEY = 'e0ec4c232335ffc08d42a11556a54ec5';  
+    IMAGEPATH = 'https://image.tmdb.org/t/p/w500/';
 
     getMovies = async () => {
       const res = await  fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${this._APIKEY}&language=ru-RU&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`)
       const movies = await res.json()
       console.log(movies);
-      return movies.results.map((movie) => this.transformMovie(movie))
+      return movies.results.slice(0,18).map((movie) => this.transformMovie(movie))
     }
 
    #getGenres(genresId){
@@ -22,9 +23,10 @@ export default class MovieService {
 
     transformMovie = (movie) => {
         return {
+            id:movie.id,
             title: movie.title,
-            genre: this.#getGenres(movie.genre_ids),
-            poster: movie.backdrop_path,
+            genres: this.#getGenres(movie.genre_ids),
+            poster: this.IMAGEPATH + movie.poster_path,
             releaseDate: movie.release_date
         }
     }
