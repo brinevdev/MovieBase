@@ -29,7 +29,7 @@ function App() {
     setParams((state)=>{
       return {
         ...state,
-       year,
+      ['primary_release_year']:year,
       }
     })
   }
