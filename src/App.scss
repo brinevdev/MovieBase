@@ -75,3 +75,16 @@ input[type=number] {
       flex: 0 1 20%
 }
 }
+.pagination {
+  padding:30px 15px;
+  display:flex;
+  justify-content: center;
+  gap:30px;
+  &__page {
+    font-size: 28px;
+  }
+  &__button {
+    padding: 10px 15px;
+
+  }
+}

@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
+  let [page,setPage] = useState(1);
   const [params,setParams] = useState([])
   const [movies,setMovies] = useState([]);
   const movieService = new MovieService();
@@ -49,6 +50,20 @@ function App() {
   })
   .catch(console.log('error'));
   }
+
+
+  const onPageChanged = (i) => {
+    if (page + i === 0) return
+    setPage(page += i);
+    setParams((state)=>{
+      return {
+        ...state,
+        page,
+      }
+    })
+    window.scrollTo(0,0);
+  }
+
   console.log('movies',movies);
   return (
     <div className="wrapper">
@@ -58,6 +73,11 @@ function App() {
               <div className="movies__container">
                   <div className="movies__body">
                       <MovieList movies={movies}/>
+                      <div className="pagination">
+                        <button className='pagination__button' onClick={()=>onPageChanged(-1)}>Назад</button>
+                          <span className='pagination__page'>{page}</span>
+                        <button className='pagination__button' onClick={()=>onPageChanged(1)}>Вперёд</button>
+                      </div>
                   </div>
                   <NavBar 
                   filetrByGenre = {filetrByGenre} 

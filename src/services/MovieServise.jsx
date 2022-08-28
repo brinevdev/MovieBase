@@ -4,7 +4,7 @@ export default class MovieService {
 
     _APIKEY = 'e0ec4c232335ffc08d42a11556a54ec5';  
      IMAGEPATH = 'https://image.tmdb.org/t/p/w500/';
-    _QUERYBASE = `https://api.themoviedb.org/3/discover/movie?language=ru-RU&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&api_key=${this._APIKEY}&`
+    _QUERYBASE = `https://api.themoviedb.org/3/discover/movie?language=ru-RU&sort_by=popularity.desc&include_adult=false&include_video=false&api_key=${this._APIKEY}&`
     
     
     getMovies = async (params=[]) => {
