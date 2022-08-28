@@ -2,7 +2,7 @@ import './navbar.scss';
 import searchIcon from './../../resources/icons/search_icon.svg'
 
 
-const NavBar = ({filetrByGenre,filterByYear}) => {
+const NavBar = ({filetrByGenre,filterByYear,search}) => {
     
             
     const onGenreFilter = (e) => {
@@ -18,6 +18,14 @@ const NavBar = ({filetrByGenre,filterByYear}) => {
         filterByYear(+value);
     }
 
+    const onSearch = (e) => {
+        e.preventDefault();
+        const value = document.querySelector('#search-input').value;
+        if (!value) return
+        console.log('value',value);
+        search(value);
+    }
+
     return (
         <div className="movies__navbar navbar">
         <div className="navbar__title">
@@ -26,7 +34,11 @@ const NavBar = ({filetrByGenre,filterByYear}) => {
         <div className="navbar__search">
             <form>
                 <input id="search-input" type="text" placeholder="поиск"/>
-                <button id="search-btn" type="submit"><img src={searchIcon} alt=""/></button>
+                <button 
+                id="search-btn" 
+                type="submit"
+                onClick = {onSearch}
+                ><img src={searchIcon} alt=""/></button>
             </form>    
         </div>
         <div className="navbar__subtitle">Год выпуска</div>

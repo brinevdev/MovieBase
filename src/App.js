@@ -5,6 +5,8 @@ import { Fragment } from 'react';
 import NavBar from './components/NavBar/NavBar';
 import MovieList from './components/MovieList/MovieList';
 import MovieService from './services/MovieServise';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
   const [params,setParams] = useState([])
@@ -34,6 +36,20 @@ function App() {
     })
   }
 
+  const search = (value) => {
+   movieService.getMoviesByTitle(value)
+   .then(movies => {
+    if (movies.length === 0) {
+      toast.info("По вашему запросу ничего не найдено", {
+        position: toast.POSITION.TOP_RIGHT
+      });
+    } else {
+      setMovies(movies)
+    }
+  })
+  .catch(console.log('error'));
+  }
+  console.log('movies',movies);
   return (
     <div className="wrapper">
       <Header/>
@@ -45,11 +61,15 @@ function App() {
                   </div>
                   <NavBar 
                   filetrByGenre = {filetrByGenre} 
-                  filterByYear = {filterByYear}/>
+                  filterByYear = {filterByYear}
+                  search={search}
+                  />
               </div>
           </div>
+          <ToastContainer/>
       </main>
     </div>
+
   );
 }
 

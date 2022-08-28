@@ -25,6 +25,12 @@ export default class MovieService {
     return genresAll.join(', ')
     }
 
+
+    getMoviesByTitle = async (title) => {
+        const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${this._APIKEY}&language=ru-RU&query=${title}`);
+        const movies = await res.json()
+        return movies.results.slice(0,18).map((movie) => this.transformMovie(movie))
+    }
     
     transformMovie = (movie) => {
         return {
