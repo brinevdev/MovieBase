@@ -1,19 +1,18 @@
 import './App.scss';
 import { useEffect, useState } from 'react';
-import Header from './components/Header/Header';
-import { Fragment } from 'react';
-import NavBar from './components/NavBar/NavBar';
-import MovieList from './components/MovieList/MovieList';
+import {Routes,Route} from 'react-router-dom';
 import MovieService from './services/MovieServise';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import {toast } from 'react-toastify';
+import  Movies  from './pages/Movies';
+import SingleMovie from './pages/SingleMovie/SingleMovie';
+
 
 function App() {
   let [page,setPage] = useState(1);
   const [params,setParams] = useState([])
   const [movies,setMovies] = useState([]);
   const movieService = new MovieService();
- 
   useEffect(()=>{
       movieService.getMovies(params)
       .then(movies => setMovies(movies))
@@ -66,30 +65,18 @@ function App() {
 
   console.log('movies',movies);
   return (
-    <div className="wrapper">
-      <Header/>
-      <main className="main">
-          <div className="movies">
-              <div className="movies__container">
-                  <div className="movies__body">
-                      <MovieList movies={movies}/>
-                      <div className="pagination">
-                        <button className='pagination__button' onClick={()=>onPageChanged(-1)}>Назад</button>
-                          <span className='pagination__page'>{page}</span>
-                        <button className='pagination__button' onClick={()=>onPageChanged(1)}>Вперёд</button>
-                      </div>
-                  </div>
-                  <NavBar 
-                  filetrByGenre = {filetrByGenre} 
-                  filterByYear = {filterByYear}
-                  search={search}
-                  />
-              </div>
-          </div>
-          <ToastContainer/>
-      </main>
-    </div>
-
+      <Routes>
+          <Route 
+          path='/' 
+          element={<Movies filetrByGenre ={filetrByGenre} 
+          filterByYear = {filterByYear} 
+          search = {search} 
+          onPageChanged = {onPageChanged} 
+          movies = {movies} 
+          page={page}/>}></Route>
+          <Route path = '/movie/:id' element = {<SingleMovie/>}></Route>
+          <Route path='*' element = {<h1>Page not found</h1>}></Route>
+      </Routes>
   );
 }
 
