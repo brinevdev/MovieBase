@@ -4,6 +4,7 @@ import './singleMovie.scss';
 import MovieService from "../../services/MovieServise";
 import Header from "../../components/Header/Header";
 import ActorList from "../../components/ActorList/ActorList";
+import Spinner from "../../components/Spinner/Spinner";
 
 const SingleMovie = () => {
     const {id} = useParams('id');
@@ -22,7 +23,7 @@ const SingleMovie = () => {
         <Header/>
         <div className="main"> 
           <div className="container">
-           <h1>Movie not found</h1>
+              <div className="spinner"><Spinner/></div>
           </div>
         </div>
       </div>
