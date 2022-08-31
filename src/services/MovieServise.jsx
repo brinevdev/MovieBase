@@ -9,10 +9,8 @@ export default class MovieService {
     
     getMovies = async (params=[]) => {
       const stringParams = Object.entries(params).map((param)=>`${param[0]}=${param[1]}`).join('&');
-      console.log(this._QUERYBASE+stringParams);
       const res = await fetch(this._QUERYBASE+stringParams);
       const movies = await res.json()
-      console.log(movies);
       return movies.results.slice(0,18).map((movie) => this.transformMovie(movie))
     }
 
@@ -41,9 +39,11 @@ export default class MovieService {
 
 
     getMoviesByTitle = async (title) => {
+        console.log('getMovieByTitle');
         const res = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${this._APIKEY}&language=ru-RU&query=${title}`);
         const movies = await res.json()
         return movies.results.slice(0,18).map((movie) => this.transformMovie(movie))
+      
     }
     
 

@@ -1,10 +1,11 @@
-import Header from './../components/Header/Header';
-import NavBar from './../components/NavBar/NavBar';
-import MovieList from './../components/MovieList/MovieList';
+import Header from '../../components/Header/Header';
+import NavBar from '../../components/NavBar/NavBar';
+import MovieList from '../../components/MovieList/MovieList';
 import { ToastContainer } from 'react-toastify';
 
 
 const Movies = ({filetrByGenre,filterByYear,search,onPageChanged,movies,page}) => {
+
     return (
       <div className="wrapper">
       <Header/>

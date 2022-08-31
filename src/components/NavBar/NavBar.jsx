@@ -22,7 +22,6 @@ const NavBar = ({filetrByGenre,filterByYear,search}) => {
         e.preventDefault();
         const value = document.querySelector('#search-input').value;
         if (!value) return
-        console.log('value',value);
         search(value);
     }
 
