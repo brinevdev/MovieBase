@@ -10,23 +10,20 @@ const MovieCard = ({movie,setWatchList,isWatchList}) => {
     const onAdd = (movie) => {
         setWatchList((state)=> {
             if (state.some((movie)=>movie.id === id)) return state
-
             toast.success("Добавленно в список просмотра", {
                 position: toast.POSITION.TOP_RIGHT
               });
-              
-            return [
-                ...state,
-                movie,
-            ]
-            
+            localStorage.setItem('watchList',JSON.stringify([...state,movie]));
+
+            return [...state,movie,]  
         }
-        )
-       
+        ) 
     }
 
     const onDelete = (id) => {
         setWatchList((state)=> {
+           localStorage.setItem('watchList',JSON.stringify(state.filter((movie)=>movie.id !== id))); 
+           
            return  state.filter((movie)=>movie.id !== id)
         })
         toast.success("Удаленно из списка просмотра", {
