@@ -1,6 +1,6 @@
 import './header.scss';
 import logo from './../../resources/images/Logotype.svg';
-
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -11,7 +11,8 @@ const Header = () => {
             </div>
             <nav className="header__menu menu">
                 <ul className="menu__list">
-                    <li><a href="/" className="menu__link active">Главная</a></li>
+                    <li><NavLink to="/" className="menu__link">Главная</NavLink></li>
+                    <li><NavLink to="/watchList" className="menu__link">Хочу посмотреть</NavLink></li>
                 </ul>
             </nav>
             <div className="menu__icon">

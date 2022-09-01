@@ -3,7 +3,8 @@
     color: #e5e5e5;;
     background-color: #252525;
     font-size: 16px;
-    
+    display: flex;
+    flex-direction: column;
     &__image {
         display: block;
         
@@ -16,6 +17,7 @@
     &__body {
         display: flex;
         flex-direction: column;
+        flex: 0 1 100%;
         gap: 30px;
         padding: 20px 15px;
     }
@@ -38,6 +40,13 @@
     }
     &__year {
         white-space: nowrap;
+    }
+    &__add {
+        text-align: center;
+        padding: 15px 0px;
+        background: #bfaaee;
+        cursor: pointer;
+        color: #fff;
     }
     transition: 300ms;
 }

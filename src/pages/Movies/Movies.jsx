@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import Spinner from '../../components/Spinner/Spinner';
 
 
-const Movies = ({filetrByGenre,filterByYear,search,onPageChanged,movies,page}) => {
+const Movies = ({filetrByGenre,filterByYear,search,onPageChanged,movies,page,setWatchList}) => {
 
 
 
@@ -29,7 +29,7 @@ const Movies = ({filetrByGenre,filterByYear,search,onPageChanged,movies,page}) =
           <div className="movies">
               <div className="movies__container">
                   <div className="movies__body">
-                      <MovieList movies={movies}/>
+                      <MovieList movies={movies} setWatchList = {setWatchList}/>
                       <div className="pagination">
                         <button className='pagination__button' onClick={()=>onPageChanged(-1)}>Назад</button>
                           <span className='pagination__page'>{page}</span>

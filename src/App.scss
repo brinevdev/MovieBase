@@ -59,6 +59,9 @@ input[type=number] {
       background-color: #aeaeae;
       position: relative;
       min-height: 100vh;
+      &_watch{
+        grid-template-columns: 1fr;
+      }
 }
 
 &__items {

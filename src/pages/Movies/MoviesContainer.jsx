@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import {toast } from 'react-toastify';
 import Movies from './Movies';
 
- const MoviesContainer = () => {
+ const MoviesContainer = ({setWatchList}) => {
     const [params,setParams] = useState({page:1})
     const [movies,setMovies] = useState([]);
     const [searchParams,setSearchParams] = useSearchParams();
@@ -89,6 +89,7 @@ import Movies from './Movies';
           movies = {movies} 
           page={params.page}
           getInitialParams = {getInitialParams}
+          setWatchList = {setWatchList}
           />
     )
 
