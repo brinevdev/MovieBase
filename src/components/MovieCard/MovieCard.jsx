@@ -9,14 +9,20 @@ const MovieCard = ({movie,setWatchList,isWatchList}) => {
 
     const onAdd = (movie) => {
         setWatchList((state)=> {
+            if (state.some((movie)=>movie.id === id)) return state
+
+            toast.success("Добавленно в список просмотра", {
+                position: toast.POSITION.TOP_RIGHT
+              });
+              
             return [
                 ...state,
                 movie,
             ]
-        })
-        toast.success("Добавленно в список просмотра", {
-            position: toast.POSITION.TOP_RIGHT
-          });
+            
+        }
+        )
+       
     }
 
     const onDelete = (id) => {
