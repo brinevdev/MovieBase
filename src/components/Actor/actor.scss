@@ -1,32 +1,5 @@
-.actors {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    &__title {
-        text-align: center;
-        color: #fff;
-        font-size: 36px;
-        line-height: 30px;
-        font-weight: 700;
-        padding: 10px 20px;
-        margin-bottom: 40px;
-    }
 
-    &__items {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        row-gap: 30px;
-        column-gap: 80px;
-    }
-
-    &__item {
-        display: flex;
-    }
-}
 .actor {
-    &__avatar {
-        margin-right: 20px;
-    }
     &__avatar img {
         height: 200px;
     }
@@ -47,3 +20,4 @@
         color: #e5e5e5;
     }
 }
+

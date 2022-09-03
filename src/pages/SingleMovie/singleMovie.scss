@@ -1,10 +1,10 @@
 .container {
-    width: 1200px;
+    max-width: 1200px;
     margin: auto;
 }
 .movie-description {
     padding: 0px 20px 20px;
-    background-color:#2f2f2f;;
+    background-color:#2f2f2f;
     &__title {
         font-size: 20px;
         font-weight: 700;
@@ -17,7 +17,6 @@
         color: #e5e5e5;
         font-size: 16px;
         line-height: 24px;
-        padding-left: 30px;
     }
     &__body {
         display: flex;
@@ -26,6 +25,7 @@
     &__poster {
         display: flex;
         padding-bottom: 20px;
+        gap: 20px;
     }
    
 }
@@ -41,4 +41,32 @@ padding: 10px 5px;
 }
 .info-movie div:nth-child(odd) {
 background-color: #252525;
+}
+
+
+@media (max-width:1200px) {
+    .movie-description {
+        &__poster {
+            flex-direction: column;
+        }
+        &__image {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 20px;
+        }
+    }
+}
+@media (max-width:576px) {
+    .movie-description {
+        &__image {
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+    .info-movie * {
+        gap: 5px;
+        display: flex;
+        flex-direction: column;
+    }
 }

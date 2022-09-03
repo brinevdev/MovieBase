@@ -1,6 +1,9 @@
 .header {
     padding: 18px 15px;
-    background-color:  #2fad68;;
+    background-color:  #2fad68;
+    position:sticky;
+    top: 0px;
+    z-index: 1;
     &__container {
         max-width: 1200px;
         margin: auto;
@@ -26,6 +29,7 @@
     &__link {
         font-size: 18px;
         color: #fff;
+        white-space: nowrap;
     }
     &__link:hover {
        color: rgb(251, 255, 11);
@@ -34,6 +38,12 @@
         color: rgb(251, 255, 11);
      }
     &__icon {
+        display: none;
+    }
+}
+
+@media(max-width:576px) {
+    .header__logo {
         display: none;
     }
 }

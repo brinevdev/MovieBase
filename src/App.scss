@@ -94,3 +94,13 @@ input[type=number] {
 .spinner {
   padding-top: 200px;
 }
+
+@media(max-width:1200px) {
+  .movies {
+    &__container {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+  }
+}
+
