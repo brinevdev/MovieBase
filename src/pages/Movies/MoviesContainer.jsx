@@ -75,7 +75,7 @@ import Movies from './Movies';
       setParams((state)=>{
         return {
           ...state,
-          page: +state.page + 1
+          page: +state.page + i
         }
       })
       window.scrollTo(0,0);
